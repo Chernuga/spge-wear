@@ -1,0 +1,74 @@
+apply plugin: 'com.android.application'
+apply plugin: 'org.jetbrains.kotlin.android'
+apply plugin: 'org.jetbrains.kotlin.plugin.compose'
+
+android {
+    namespace 'com.chernuga.spge.wear'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.chernuga.spge"
+        minSdk 26
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+    }
+
+    // Signed with the same key as the phone module: the Wearable Data Layer
+    // only delivers data between apps that share a signature.
+    signingConfigs {
+        release {
+            storeFile file("../keystore/spge-release.jks")
+            storePassword System.getenv("SPGE_STORE_PASSWORD") ?: "spgepass"
+            keyAlias System.getenv("SPGE_KEY_ALIAS") ?: "spge"
+            keyPassword System.getenv("SPGE_KEY_PASSWORD") ?: "spgepass"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+        }
+        debug {
+            signingConfig signingConfigs.release
+        }
+    }
+
+    buildFeatures {
+        compose true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+}
+
+dependencies {
+    implementation project(':shared')
+
+    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation 'androidx.activity:activity-compose:1.8.2'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.7.0'
+
+    // Wear Compose provides the Material theming and Scaffold tuned for
+    // round, small screens.
+    implementation 'androidx.wear.compose:compose-material:1.3.0'
+    implementation 'androidx.wear.compose:compose-foundation:1.3.0'
+    implementation 'androidx.wear.compose:compose-navigation:1.3.0'
+
+    // Icons.Filled.Refresh lives in the extended icon set, not in
+    // compose-material's minimal built-in set.
+    implementation 'androidx.compose.material:material-icons-extended:1.5.4'
+
+    implementation 'com.google.android.gms:play-services-wearable:18.1.0'
+
+    // Provides Task.await() so the Data Layer calls can be used from
+    // coroutines without hand-rolled listeners.
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.7.3'
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Simple calendar glyph on the app's dark background. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:fillColor="#1E3A8A"
+        android:pathData="M30,34 h48 a4,4 0 0 1 4,4 v40 a4,4 0 0 1 -4,4 h-48 a4,4 0 0 1 -4,-4 v-40 a4,4 0 0 1 4,-4 z" />
+    <path
+        android:fillColor="#93C5FD"
+        android:pathData="M30,42 h48 v8 h-48 z" />
+    <path
+        android:fillColor="#FBBF24"
+        android:pathData="M38,30 h5 v10 h-5 z M65,30 h5 v10 h-5 z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M36,56 h10 v8 h-10 z M51,56 h10 v8 h-10 z M66,56 h8 v8 h-8 z M36,68 h10 v8 h-10 z M51,68 h10 v8 h-10 z" />
+</vector>

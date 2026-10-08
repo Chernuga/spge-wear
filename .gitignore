@@ -1,0 +1,25 @@
+# Build outputs and IDE state
+build/
+.gradle/
+local.properties
+*.iml
+.idea/
+.cxx/
+captures/
+
+# Signing material — MUST NOT be committed.
+# The keystore and its passwords are deliberately excluded: anyone holding
+# them can publish an update to this app's package name, and because the
+# phone and wear apps share one certificate (required for the Wearable
+# Data Layer to pair them), leaking it compromises both.
+keystore/
+*.jks
+*.keystore
+signing.properties
+
+# Staged release artifacts are attached to GitHub Releases instead.
+release-artifacts/
+
+# OS noise
+Thumbs.db
+.DS_Store

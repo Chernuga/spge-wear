@@ -1,0 +1,47 @@
+apply plugin: 'com.android.application'
+
+android {
+    namespace 'com.chernuga.spge.mobile'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.chernuga.spge"
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+    }
+
+    // One signing config for both APKs. The Wearable Data Layer only links
+    // two apps when they share a package signature, so the phone and wear
+    // modules are signed with the same key.
+    signingConfigs {
+        release {
+            storeFile file("../keystore/spge-release.jks")
+            storePassword System.getenv("SPGE_STORE_PASSWORD") ?: "spgepass"
+            keyAlias System.getenv("SPGE_KEY_ALIAS") ?: "spge"
+            keyPassword System.getenv("SPGE_KEY_PASSWORD") ?: "spgepass"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+        }
+        debug {
+            signingConfig signingConfigs.release
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    implementation project(':shared')
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.gms:play-services-wearable:18.1.0'
+}

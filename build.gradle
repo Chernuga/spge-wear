@@ -1,0 +1,25 @@
+// Top-level build file
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.13.0'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:2.0.21'
+        // Kotlin 2.0+ requires the Compose compiler to be applied as its own
+        // Gradle plugin; it is no longer bundled with the Kotlin plugin.
+        classpath 'org.jetbrains.kotlin:compose-compiler-gradle-plugin:2.0.21'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
