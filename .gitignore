@@ -17,7 +17,8 @@ keystore/
 *.keystore
 signing.properties
 
-# Staged release artifacts are attached to GitHub Releases instead.
+# Staged copies of the release APKs live in apk/ and ARE tracked, so the built
+# artifacts ship alongside the source. This scratch directory is not.
 release-artifacts/
 
 # OS noise
